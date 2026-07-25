@@ -23,7 +23,7 @@ public class SplashActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         new Handler(Looper.getMainLooper()).postDelayed(() -> {
 
-            Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+            Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
             startActivity(intent);
 
             overridePendingTransition(
