@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "207986131393",
+    "project_id": "drag0nzit-mubble",
+    "storage_bucket": "drag0nzit-mubble.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:207986131393:android:99f1af62e140eb7181ef40",
+        "android_client_info": {
+          "package_name": "com.example.mubble"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAZ1XIXK27GXEfF9s0nfDWuMG3O593y75I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

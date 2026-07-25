@@ -1,8 +1,16 @@
 <resources>
     <string name="app_name">Mubble</string>
 
-<!--    Bottom menu -->
+    <!--    Bottom menu -->
     <string name="nav_home">Главная</string>
     <string name="nav_listen">Слушать</string>
     <string name="nav_profile">Профиль</string>
+
+    <!--    Login activity-->
+    <string name="login_title">Авторизуйтесь</string>
+    <string name="hint_email">Введите email</string>
+    <string name="hint_password">Введите пароль</string>
+    <string name="btn_login">Войти</string>
+    <string name="btn_register">Зарегестрироваться</string>
+
 </resources>
