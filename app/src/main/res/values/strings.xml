@@ -7,10 +7,22 @@
     <string name="nav_profile">Профиль</string>
 
     <!--    Login activity-->
-    <string name="login_title">Авторизуйтесь</string>
-    <string name="hint_email">Введите email</string>
-    <string name="hint_password">Введите пароль</string>
-    <string name="btn_login">Войти</string>
-    <string name="btn_register">Зарегестрироваться</string>
+    <string name="login_title">Добро пожаловать!</string>
+    <string name="login_subtitle">Войдите в аккаунт</string>
+
+    <string name="register_title">Создание аккаунта</string>
+    <string name="register_subtitle">Музыка всегда рядом 🫧</string>
+
+    <string name="email">Электронная почта</string>
+    <string name="password">Пароль</string>
+    <string name="repeat_password">Повторите пароль</string>
+    <string name="username">Имя пользователя</string>
+
+    <string name="login">Войти</string>
+    <string name="register">Создать аккаунт</string>
+
+    <string name="have_account">Уже есть аккаунт?</string>
+    <string name="no_account">Нет аккаунта?</string>
+
 
 </resources>
