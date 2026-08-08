@@ -1,10 +1,10 @@
 package com.example.mubble.adapters;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -12,20 +12,27 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mubble.R;
 import com.example.mubble.models.Track;
+import com.example.mubble.player.MusicPlayerManager;
 
 import java.util.List;
 
 public class TrackAdapter extends RecyclerView.Adapter<TrackAdapter.TrackViewHolder> {
 
-    private List<Track> trackList;
+    private final List<Track> tracks;
+    private final MusicPlayerManager playerManager;
 
-    public TrackAdapter(List<Track> trackList) {
-        this.trackList = trackList;
+
+    public TrackAdapter(List<Track> tracks, MusicPlayerManager playerManager) {
+        this.tracks = tracks;
+        this.playerManager = playerManager;
     }
+
 
     @NonNull
     @Override
-    public TrackViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public TrackViewHolder onCreateViewHolder(
+            @NonNull ViewGroup parent,
+            int viewType) {
 
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.item_track, parent, false);
@@ -33,49 +40,50 @@ public class TrackAdapter extends RecyclerView.Adapter<TrackAdapter.TrackViewHol
         return new TrackViewHolder(view);
     }
 
+
     @Override
-    public void onBindViewHolder(@NonNull TrackViewHolder holder, int position) {
+    public void onBindViewHolder(
+            @NonNull TrackViewHolder holder,
+            int position) {
 
-        Track track = trackList.get(position);
+        Track track = tracks.get(position);
 
-        holder.tvTitle.setText(track.getTitle());
-        holder.tvArtist.setText(track.getArtist());
+        holder.title.setText(track.getTitle());
+        holder.artist.setText(track.getArtist());
 
-        holder.tvDuration.setText(formatDuration(track.getDuration()));
 
-        // Обложку подключим позже
-        // Glide/Picasso будем использовать после загрузки изображений
+        holder.playButton.setOnClickListener(v -> {
+
+            String url = track.getAudioUrl();
+            Log.d("mubble_player", "НАЖАТА КНОПКА "+track.getAudioUrl());
+
+            if (url != null && !url.isEmpty()) {
+                playerManager.play(url);
+            }
+
+        });
     }
+
 
     @Override
     public int getItemCount() {
-        return trackList.size();
+        return tracks.size();
     }
+
 
     static class TrackViewHolder extends RecyclerView.ViewHolder {
 
-        ImageView imgCover;
-        TextView tvTitle;
-        TextView tvArtist;
-        TextView tvDuration;
-        ImageButton btnMore;
+        TextView title;
+        TextView artist;
+        ImageButton playButton;
+
 
         public TrackViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            imgCover = itemView.findViewById(R.id.imgCover);
-            tvTitle = itemView.findViewById(R.id.tvTitle);
-            tvArtist = itemView.findViewById(R.id.tvArtist);
-            tvDuration = itemView.findViewById(R.id.tvDuration);
-            btnMore = itemView.findViewById(R.id.btnMore);
+            title = itemView.findViewById(R.id.tvTitle);
+            artist = itemView.findViewById(R.id.tvArtist);
+            playButton = itemView.findViewById(R.id.btnMore);
         }
-    }
-
-    private String formatDuration(int seconds) {
-
-        int minutes = seconds / 60;
-        int sec = seconds % 60;
-
-        return String.format("%d:%02d", minutes, sec);
     }
 }

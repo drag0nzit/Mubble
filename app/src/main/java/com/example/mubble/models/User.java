@@ -8,7 +8,6 @@ public class User {
     private String avatarUrl;
 
     public User() {
-        // нужен Firestore
     }
 
     public User(String id, String email, String username, String avatarUrl) {

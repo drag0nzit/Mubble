@@ -18,6 +18,7 @@ import com.example.mubble.databinding.ActivityMainBinding;
 import com.example.mubble.databinding.ActivitySplashBinding;
 import com.example.mubble.models.Track;
 import com.example.mubble.models.User;
+import com.example.mubble.player.MusicPlayerManager;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -52,7 +53,9 @@ public class MainActivity extends AppCompatActivity {
 
         trackList = new ArrayList<>();
 
-        trackAdapter = new TrackAdapter(trackList);
+        MusicPlayerManager playerManager = MusicPlayerManager.getInstance(this);
+
+        trackAdapter = new TrackAdapter(trackList, playerManager);
 
         rvTracks.setLayoutManager(new LinearLayoutManager(this));
         rvTracks.setAdapter(trackAdapter);

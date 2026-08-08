@@ -20,7 +20,6 @@ public class FirestoreManager {
     }
 
 
-    // Сохранение пользователя после регистрации
     public void createUser(User user) {
 
         db.collection("users")
@@ -42,13 +41,11 @@ public class FirestoreManager {
     }
 
 
-    // Интерфейс загрузки треков
     public interface OnTracksLoaded {
         void onLoaded(List<Track> tracks);
     }
 
 
-    // Получение всех треков
     public void getTracks(OnTracksLoaded listener) {
 
         db.collection("tracks")
