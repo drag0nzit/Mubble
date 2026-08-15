@@ -5,12 +5,10 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+
 import com.example.mubble.databinding.ActivitySplashBinding;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -19,17 +17,35 @@ public class SplashActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding=ActivitySplashBinding.inflate(getLayoutInflater());
+
+        binding = ActivitySplashBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
         new Handler(Looper.getMainLooper()).postDelayed(() -> {
 
-            Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
+            FirebaseAuth auth = FirebaseAuth.getInstance();
+
+            Intent intent;
+
+            if (auth.getCurrentUser() != null) {
+                intent = new Intent(
+                        SplashActivity.this,
+                        MainActivity.class
+                );
+            } else {
+                intent = new Intent(
+                        SplashActivity.this,
+                        LoginActivity.class
+                );
+            }
+
             startActivity(intent);
 
             overridePendingTransition(
                     android.R.anim.fade_in,
                     android.R.anim.fade_out
             );
+
             finish();
 
         }, 1000);
